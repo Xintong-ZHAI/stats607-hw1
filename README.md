@@ -37,3 +37,36 @@ Restore the environment on a fresh system (run in R):
 install.packages("renv", repos = "https://cran.rstudio.com")
 renv::restore()
 ```
+
+**Alternative option:**  
+You can also install dependencies via the helper script:
+
+```bash
+Rscript install_dependencies.R
+```
+
+## Usage Examples with Expected Outputs
+
+Run the full pipeline from the project root:
+
+```bash
+Rscript run_analysis.R
+```
+
+This will:
+- Load and clean `data/raw/BIOSTAT651_mammography_data.csv`
+- Fit logistic and proportional-odds models
+- Save outputs:
+  - `results/tables/logistic_or.csv` → odds ratios for logistic regression  
+  - `results/tables/polr_or.csv` → odds ratios for proportional odds model  
+  - `results/figures/stage_by_treatment.png` → bar plot of follow-up stage distribution  
+
+Run tests:
+
+```bash
+Rscript tests/test_pipeline.R
+```
+
+Expected output (summary):
+- Test 1 passes if all ages are non-negative.  
+- Test 2 passes if the expected result files exist in `results/`.  
